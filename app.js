@@ -232,6 +232,15 @@ function setActionsEnabled(enabled) {
   document.getElementById('btn-print').disabled    = !enabled;
 }
 
+// ─── Unload guard ────────────────────────────────────────────────────────────
+
+window.addEventListener('beforeunload', e => {
+  if (currentData) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
 // ─── Init ────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
