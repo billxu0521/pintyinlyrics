@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拼音歌詞工具</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 頂部導覽 -->
+  <nav class="topnav no-print">
+    <div class="nav-tabs">
+      <button class="tab active" data-mode="input">① 輸入</button>
+      <button class="tab" data-mode="view" disabled>② 檢視</button>
+      <button class="tab" data-mode="edit" disabled>③ 校對</button>
+    </div>
+    <div class="nav-actions">
+      <button id="btn-download" class="nav-btn" disabled>↓ 下載拼音檔</button>
+      <label class="nav-btn" for="input-upload">
+        ↑ 匯入拼音檔
+        <input type="file" id="input-upload" accept=".json">
+      </label>
+      <button id="btn-print" class="nav-btn nav-btn--print" disabled>列印 / PDF</button>
+    </div>
+  </nav>
+
+  <!-- ① 輸入畫面 -->
+  <section id="screen-input" class="screen">
+    <div class="input-form">
+      <input
+        id="song-title"
+        type="text"
+        class="title-input"
+        placeholder="歌名（選填）"
+        autocomplete="off"
+      >
+      <textarea
+        id="lyrics-input"
+        placeholder="在此貼上中文歌詞…
+
+支援多段落（空行分段）
+⌘Enter 或點選轉換拼音"
+      ></textarea>
+      <div class="form-actions">
+        <button id="btn-convert" class="btn btn--primary">轉換拼音 →</button>
+      </div>
+      <p class="hint">⌘Enter 快速轉換 · 使用右上角「↑ 匯入拼音檔」可載入已校正的資料</p>
+    </div>
+  </section>
+
+  <!-- ② ③ 預覽畫面（view / edit 共用） -->
+  <section id="screen-preview" class="screen hidden">
+    <div id="edit-hint" class="edit-hint hidden">
+      ✎ 校對模式：點擊拼音可直接修改，Enter 確認
+    </div>
+    <div id="preview" class="preview"></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3/dist/index.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

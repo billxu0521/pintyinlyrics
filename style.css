@@ -1,0 +1,344 @@
+/* =========================================
+   Reset & Variables
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:        #f3f0ea;
+  --surface:   #ffffff;
+  --border:    #dbd6cc;
+  --text:      #1c1c1c;
+  --muted:     #8a8480;
+  --red:       #c0392b;
+  --font-sans: 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif;
+  --font-body: 'Kaiti TC', 'BiauKai', '標楷體', 'KaiTi', serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   Top Nav
+   ========================================= */
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: var(--surface);
+  border-bottom: 1.5px solid var(--border);
+  z-index: 100;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.tab {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background 0.14s, color 0.14s;
+  white-space: nowrap;
+}
+
+.tab:hover:not(:disabled) {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--text);
+  color: white;
+}
+
+.tab:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--text);
+  white-space: nowrap;
+  transition: background 0.14s, border-color 0.14s, color 0.14s;
+  user-select: none;
+}
+
+.nav-btn:hover:not(:disabled) {
+  border-color: var(--text);
+  background: var(--text);
+  color: white;
+}
+
+.nav-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.nav-btn--print {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.nav-btn--print:hover:not(:disabled) {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+
+input[type="file"] { display: none; }
+
+/* =========================================
+   Screens
+   ========================================= */
+.screen {
+  position: fixed;
+  top: 52px; left: 0; right: 0; bottom: 0;
+  overflow-y: auto;
+  background: var(--bg);
+}
+
+.screen.hidden { display: none; }
+
+/* =========================================
+   Input Screen
+   ========================================= */
+.input-form {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+
+.title-input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
+.title-input::placeholder { color: var(--muted); }
+
+textarea {
+  width: 100%;
+  height: 340px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  resize: vertical;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
+textarea::placeholder { color: var(--muted); }
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.14s;
+}
+
+.btn--primary {
+  background: var(--text);
+  border-color: var(--text);
+  color: white;
+  font-size: 1rem;
+  padding: 12px 32px;
+  letter-spacing: 0.02em;
+}
+
+.btn--primary:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* =========================================
+   Preview Screen
+   ========================================= */
+.edit-hint {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 249, 240, 0.96);
+  border-bottom: 1px solid #f0e0c0;
+  padding: 9px 24px;
+  font-size: 0.78rem;
+  color: #a05010;
+  text-align: center;
+  font-family: var(--font-sans);
+  backdrop-filter: blur(4px);
+}
+
+.edit-hint.hidden { display: none; }
+
+.preview {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 48px 100px;
+}
+
+/* =========================================
+   Lyrics & Ruby
+   ========================================= */
+.lyrics-content {
+  font-family: var(--font-body);
+  font-size: 2.2rem;
+  line-height: 3.0;
+  text-align: center;
+}
+
+.song-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.14em;
+  margin-bottom: 1.4em;
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+
+.lyric-line { display: block; }
+
+ruby { ruby-align: center; }
+
+rt {
+  font-family: 'Noto Sans', 'Arial Unicode MS', Arial, sans-serif;
+  font-size: 0.5em;
+  color: var(--red);
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+/* Edit mode */
+.edit-mode rt {
+  border-bottom: 1.5px dashed var(--red);
+  cursor: text;
+  padding: 0 1px;
+  border-radius: 2px;
+  min-width: 0.5em;
+  display: inline-block;
+}
+
+.edit-mode rt:hover { background: rgba(192, 57, 43, 0.07); }
+.edit-mode rt:focus { background: rgba(192, 57, 43, 0.13); outline: none; }
+
+/* =========================================
+   Print Styles
+   ========================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 2.2cm 2.8cm;
+  }
+
+  .no-print      { display: none !important; }
+  .edit-hint     { display: none !important; }
+
+  body { background: white; color: black; }
+
+  /* Reset screen layout for print */
+  .screen {
+    position: static;
+    overflow: visible;
+    background: white;
+  }
+
+  #screen-input   { display: none !important; }
+  #screen-preview { display: block !important; }
+
+  .preview {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .lyrics-content {
+    font-size: 22pt;
+    line-height: 2.8;
+  }
+
+  .song-title {
+    font-size: 26pt;
+    margin-bottom: 1.4em;
+  }
+
+  rt {
+    font-family: 'Noto Sans', 'Arial Unicode MS', Arial, sans-serif;
+    font-size: 0.48em;
+    color: #444;
+    border-bottom: none !important;
+  }
+}
