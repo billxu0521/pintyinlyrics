@@ -237,7 +237,7 @@ function setActionsEnabled(enabled) {
 window.addEventListener('beforeunload', e => {
   if (currentData) {
     e.preventDefault();
-    e.returnValue = '';
+    e.returnValue = 'unsaved';
   }
 });
 
